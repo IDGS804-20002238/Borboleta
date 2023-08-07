@@ -14,6 +14,9 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RegistroComponent } from './vistas/registro/registro.component';
 import { HeaderAdmComponent } from './vistas/Admin/header-adm/header-adm.component';
+import { ProovedoresComponent } from './vistas/Admin/proovedores/proovedores.component';
+import { ErrorsComponent } from './vistas/errors/errors.component';
+import { FooterAdminComponent } from './vistas/Admin/footer-admin/footer-admin.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +27,9 @@ import { HeaderAdmComponent } from './vistas/Admin/header-adm/header-adm.compone
     LoginComponent,
     RegistroComponent,
     HeaderAdmComponent,
+    ProovedoresComponent,
+    ErrorsComponent,
+    FooterAdminComponent,
   ],
   imports: [
     BrowserModule,

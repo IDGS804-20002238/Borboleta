@@ -9898,6 +9898,17 @@ a:focus {
   -webkit-animation-timing-function: opacity cubic-bezier(0, 1, 0.4, 1);
   animation-timing-function: opacity cubic-bezier(0, 1, 0.4, 1);
 }
+.bg-gradient-borboleta {
+  background-color: #FFB533;
+  background-image: linear-gradient(180deg, #FFB533 10%, #FF8000 100%);
+  background-size: cover;
+}
+
+.bg-gradient-light-orange {
+  background-color: #FFEDCC;
+  background-image: linear-gradient(180deg, #FFEDCC 10%, #FFE6B3 100%);
+  background-size: cover;
+}
 
 .bg-gradient-primary {
   background-color: #4e73df;

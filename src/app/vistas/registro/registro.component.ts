@@ -62,12 +62,31 @@ export class RegistroComponent {
       this.proyectoApiService.register(data).subscribe(
         (response) => {
           console.log('Respuesta de la API de registro:', response);
-          Swal.fire('¡Registro exitoso!', '', 'success');
-          window.location.href = '/login';
+          console.log('estatus code: ', response.statusCode);
+  
+          // Verificar el código de estado de la respuesta
+          if (response.statusCode === 200) {
+            // Registro exitoso
+            Swal.fire('¡Registro exitoso!', '', 'success').then(() => {
+              // Redireccionar a la página de login después de hacer clic en el botón "OK"
+              window.location.href = '/login';
+            });
+          }else if (response.statusCode === 409) {
+            // Error en los datos ingresados
+            Swal.fire('¡Error en el registro!', 'Este correo ya esta registrado.', 'error');
+          } else if (response.statusCode === 400) {
+            // Error en los datos ingresados
+            Swal.fire('¡Error en el registro!', 'Por favor, verifica los datos ingresados.', 'error');
+          } else {
+            // Otro error desconocido
+            Swal.fire('¡Error en el registro!', 'Hubo un problema al intentar registrarse.', 'error');
+          }
         },
         (error) => {
           console.error('Error en el registro:', error);
-          Swal.fire('¡Error en el registro!', 'Por favor, verifica los datos ingresados.', 'error');
+  
+          // Mostrar mensaje de error genérico
+          Swal.fire('¡Error en el registro!', 'Hubo un problema al intentar registrarse.', 'error');
         }
       );
     }

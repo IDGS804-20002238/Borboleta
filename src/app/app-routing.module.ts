@@ -4,13 +4,29 @@ import { HomeComponent } from './vistas/home/home.component';
 import { LoginComponent } from './vistas/login/login.component';
 import { RegistroComponent } from './vistas/registro/registro.component';
 import { AuthGuardService } from './guards/auth-guard.service';
+import { HeaderAdmComponent } from './vistas/Admin/header-adm/header-adm.component';
+import { ErrorsComponent } from './vistas/errors/errors.component';
+import { ProovedoresComponent } from './vistas/Admin/proovedores/proovedores.component';
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'registro', component: RegistroComponent }
-  // Agrega más rutas según necesites
+  { path: 'registro', component: RegistroComponent },
+  { path: 'error', component:  ErrorsComponent},
+  { 
+    path: 'proovedores', 
+    canActivate: [AuthGuardService],
+    component:  ProovedoresComponent
+  },
+  { 
+    path: 'homeAdmin',
+    canActivate: [AuthGuardService],
+    component: HeaderAdmComponent 
+  },
+  // Redirige cualquier ruta desconocida a la página de error 404
+  { path: '**', redirectTo: 'error' }
 ];
 
 @NgModule({
