@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 
@@ -7,10 +7,21 @@ import { Router } from '@angular/router';
   templateUrl: './header-adm.component.html',
   styleUrls: ['./header-adm.component.css']
 })
-export class HeaderAdmComponent {
+export class HeaderAdmComponent implements OnInit {
+  idRole: number = 0; // Asigna un valor por defecto
+
+  constructor(private router: Router) { }
+
+  ngOnInit(): void {
+    // Obtener el idRole del localStorage
+    const storedIdRole = localStorage.getItem('idRole');
+    if (storedIdRole) {
+      this.idRole = +storedIdRole;
+    }
+  }
 
   Nombre: string | null = localStorage.getItem('Nombre');
-  constructor(private router: Router) { }
+
 
   onLogOut(): void {
     localStorage.clear();

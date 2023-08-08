@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { AuthGuardService } from './guards/auth-guard.service';
 import { AppRoutingModule } from './app-routing.module';
@@ -17,6 +18,7 @@ import { HeaderAdmComponent } from './vistas/Admin/header-adm/header-adm.compone
 import { ProovedoresComponent } from './vistas/Admin/proovedores/proovedores.component';
 import { ErrorsComponent } from './vistas/errors/errors.component';
 import { FooterAdminComponent } from './vistas/Admin/footer-admin/footer-admin.component';
+import { MateriaPrimaComponent } from './vistas/Admin/materia-prima/materia-prima.component';
 
 @NgModule({
   declarations: [
@@ -30,13 +32,15 @@ import { FooterAdminComponent } from './vistas/Admin/footer-admin/footer-admin.c
     ProovedoresComponent,
     ErrorsComponent,
     FooterAdminComponent,
+    MateriaPrimaComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    BsDropdownModule.forRoot()
   ],
   providers: [
     ProyectoApiService,

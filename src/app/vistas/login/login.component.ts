@@ -28,7 +28,7 @@ export class LoginComponent {
           if (idRole === 1) {
             this.router.navigate(['/homeAdmin']);
           } else if (idRole === 2) {
-            this.router.navigate(['/home']);
+            this.router.navigate(['/homeAdmin']);
           } else if (idRole === 3) {
             this.router.navigate(['/homeCliente']);
           } else {

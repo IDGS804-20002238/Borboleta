@@ -57,6 +57,27 @@ export class ProyectoApiService {
     return this.http.post<any>(url, null);
   }
 
+  private apiUrlRegistrarProveedor = 'https://localhost:7109/tenis/RegistrarProvedor';
+
+  onRegisterProovedor(data: any): Observable<any>{
+    console.log('esto lleva data de la api',data)
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    // Realizar la solicitud HTTP POST con los datos en el cuerpo
+    return this.http.post<any>(`${this.apiUrlRegistrarProveedor}`, data, { headers: headers });
+  }
+
+  private apiUrlRegistrarMateriaPrima = 'https://localhost:7109/tenis/NuevaMateriaPrima';
+
+  onRegisterMateriaPrima(data: any): Observable<any>{
+    console.log('esto lleva data de la api',data);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    // Realizar la solicitud HTTP POST con los datos en el cuerpo
+    return this.http.post<any>(`${this.apiUrlRegistrarMateriaPrima}`, data, { headers: headers });
+  }
   
 
 

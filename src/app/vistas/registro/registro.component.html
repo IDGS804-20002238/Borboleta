@@ -48,7 +48,7 @@
                     <input type="text" class="form-control" id="municipio" [(ngModel)]="municipio" name="municipio" placeholder="Municipio" required>
                   </div>
                   <div class="col-md-12 form-group">
-                    <input type="number" class="form-control" id="codigoPostal" [(ngModel)]="codigoPostal" name="codigoPostal" placeholder="Código Postal" required>
+                    <input type="text"  oninput="this.value=this.value.replace(/[^0-9]/g,'')" class="form-control" id="codigoPostal" [(ngModel)]="codigoPostal" name="codigoPostal" placeholder="Código Postal" required>
                   </div>
                   <div class="col-md-12 form-group">
                     <input type="text" class="form-control" id="colonia" [(ngModel)]="colonia" name="colonia" placeholder="Colonia" required>
@@ -60,7 +60,7 @@
                     <input type="number" class="form-control" id="numeroExt" [(ngModel)]="numeroExt" name="numeroExt" placeholder="Número Exterior" required>
                   </div>
                   <div class="col-md-12 form-group">
-                    <input type="number" class="form-control" id="numeroInt" [(ngModel)]="numeroInt" name="numeroInt" placeholder="Número Interior (Opcional)" >
+                    <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'')" class="form-control" id="numeroInt" [(ngModel)]="numeroInt" name="numeroInt" placeholder="Número Interior (Opcional)" >
                   </div>
                   <div class="col-md-12 form-group">
                     <input type="text" class="form-control" id="referencia" [(ngModel)]="referencia" name="referencia" placeholder="Referencia" required>

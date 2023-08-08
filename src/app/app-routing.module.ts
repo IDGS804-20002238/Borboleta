@@ -7,6 +7,7 @@ import { AuthGuardService } from './guards/auth-guard.service';
 import { HeaderAdmComponent } from './vistas/Admin/header-adm/header-adm.component';
 import { ErrorsComponent } from './vistas/errors/errors.component';
 import { ProovedoresComponent } from './vistas/Admin/proovedores/proovedores.component';
+import { MateriaPrimaComponent } from './vistas/Admin/materia-prima/materia-prima.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,11 @@ const routes: Routes = [
     path: 'proovedores', 
     canActivate: [AuthGuardService],
     component:  ProovedoresComponent
+  },
+  { 
+    path: 'materiaPrima', 
+    canActivate: [AuthGuardService],
+    component:  MateriaPrimaComponent
   },
   { 
     path: 'homeAdmin',

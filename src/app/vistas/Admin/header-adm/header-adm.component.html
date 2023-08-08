@@ -26,10 +26,17 @@
         <div class="sidebar-heading">Interface</div>
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="idRole === 1">
             <a class="nav-link" routerLink="/proovedores">
-                <i class="fas fa-fw fa-truck"></i>
-                <span>Proovedores</span></a>
+              <i class="fas fa-fw fa-truck"></i>
+              <span>Proveedores</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/materiaPrima">
+                <i class="fas fa-box-open"></i>
+              <span>Materia Prima</span>
+            </a>
         </li>
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
