@@ -78,11 +78,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr >
-                <td></td>
-                <td></td>
+              <tr *ngFor="let proveedoresInAct of proveedoresInAct">
+                <td>{{ proveedoresInAct.nombre }}</td>
+                <td>{{ proveedoresInAct.telefono }}</td>
                 <td>
-                  <button class="btn btn-success">
+                  <button (click)="activarEstatusProveedor(proveedoresInAct.idProveedor)" class="btn btn-danger">
                     <i class="fas fa-power-off"></i>
                   </button>
                 </td>

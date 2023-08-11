@@ -19,6 +19,8 @@ import { ProovedoresComponent } from './vistas/Admin/proovedores/proovedores.com
 import { ErrorsComponent } from './vistas/errors/errors.component';
 import { FooterAdminComponent } from './vistas/Admin/footer-admin/footer-admin.component';
 import { MateriaPrimaComponent } from './vistas/Admin/materia-prima/materia-prima.component';
+import { ProductosAdminComponent } from './vistas/Admin/productos-admin/productos-admin.component';
+import { ProductosClienteComponent } from './vistas/Cliente/productos-cliente/productos-cliente.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { MateriaPrimaComponent } from './vistas/Admin/materia-prima/materia-prim
     ErrorsComponent,
     FooterAdminComponent,
     MateriaPrimaComponent,
+    ProductosAdminComponent,
+    ProductosClienteComponent,
   ],
   imports: [
     BrowserModule,

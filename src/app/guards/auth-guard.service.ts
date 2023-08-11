@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
-import { HostListener } from '@angular/core';
+import { CanActivate, Router, ActivatedRouteSnapshot } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -8,57 +7,49 @@ import { HostListener } from '@angular/core';
 export class AuthGuardService implements CanActivate {
 
   private allowedRoutesForEmployee: string[] = [
-    '/login',
-    '/home',
-    '/homeAdmin',
+    'login',
+    'home',
+    'homeAdmin',
+    'materiaPrima',
+    'productosAdmin',
+  ];
+
+  private allowedRoutesForCliente: string[] = [
+    'login',
+    'home',
+    'productosCliente',
   ];
 
   constructor(private router: Router) {}
 
-  currentUrl: string = window.location.href;
-
-  @HostListener('window:popstate', ['$event'])
-  onPopState(event: any) {
-    this.currentUrl = window.location.href;
-  }
-
-  canActivate(): boolean {
+  canActivate(route: ActivatedRouteSnapshot): boolean {
     const idRole = parseInt(localStorage.getItem('idRole') ?? '0', 10);
     console.log('Esto trae el idrole del auth', idRole);
+    const targetRoute = route.routeConfig?.path || '';
+    console.log('Esto trae el targetRoute del auth', targetRoute);
+
     switch (idRole) {
       case 1: // Admin
         return true;
   
       case 2: // Empleado
-        const currentRoute = this.router.url;
-        console.log('Esto trae el currentRoute :', currentRoute);
-  
-        if (!this.allowedRoutesForEmployee.includes(currentRoute)) {
-          // Aquí puedes usar la propiedad currentUrl
-          if (this.currentUrl.includes('/homeAdmin')) {
-            return true;
-          } else {
-            this.router.navigate(['/error']);
-            return false;
-          }
+        if (!this.allowedRoutesForEmployee.includes(targetRoute)) {
+          this.router.navigate(['/error']);
+          return false;
         }
         return true;
   
       case 3: // Cliente
-        // Si es cliente, redirigir a /homeCliente
-        this.router.navigate(['/homeCliente']);
-        return false;
-  
-      case 4: // Desactivado
-        // Si está desactivado, redirigir a /inactive-client-view
-        this.router.navigate(['/inactive-client-view']);
-        return false;
-  
+        if (!this.allowedRoutesForCliente.includes(targetRoute)) {
+          this.router.navigate(['/error']);
+          return false;
+        }
+        return true;    
+      
       default:
         // Si el idRole no es válido, redirigir a /error
         this.router.navigate(['/error']);
         return false;
     }
   }
-  
 }

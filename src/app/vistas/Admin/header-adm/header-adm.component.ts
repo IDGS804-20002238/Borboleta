@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./header-adm.component.css']
 })
 export class HeaderAdmComponent implements OnInit {
-  idRole: number = 0; // Asigna un valor por defecto
+  idRole: number = 0;
 
   constructor(private router: Router) { }
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,8 +7,25 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
+  idRole: number = 0;
+
   constructor(private router: Router) { }
+
   isNavbarTransparent = true;
+
+  ngOnInit(): void {
+    // Obtener el idRole del localStorage
+    const storedIdRole = localStorage.getItem('idRole');
+    if (storedIdRole) {
+      this.idRole = +storedIdRole;
+    }
+  }
+
+  onLogOut(): void {
+    localStorage.clear();
+    this.router.navigate(['/home']);
+    
+  }
 
   onScroll() {
     this.isNavbarTransparent = window.scrollY === 0;

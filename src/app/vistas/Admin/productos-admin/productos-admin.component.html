@@ -1,0 +1,46 @@
+<app-header-adm>
+    <!-- Tenemos que usar el div con la clase main-content para que se inserte dentro del topbar y el sidebar-->
+    <div class="container-fluid main-content">
+      <!-- inicio de todo el contenido de proveedores-->
+        <!--inicio div tabla-->
+    <div class="card shadow mb-4">
+        <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button"
+          aria-expanded="true" aria-controls="collapseCardExample">
+          <h6 class="m-0 font-weight-bold text-primary">
+            Productos
+          </h6>
+        </a>
+        <div class="collapse show" id="collapseCardExample">
+          <div class="card-body">
+            <table class="table table-bordered table-striped">
+              <thead class="thead-dark">
+                <tr>
+                  <th>Imagen</th>
+                  <th>Nombre</th>
+                  <th>Precio</th>
+                  <th>descripccion</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let productos of productos">
+                  <td>
+                    <img [src]="'../../../../assets/img/fotosGuardadas/' + productos.image_name" alt="Imagen" width="50" height="50">
+                  </td>
+                  <td>{{ productos.nombre }}</td>
+                  <td>${{ productos.precio }}</td>
+                  <td>{{ productos.descripccion }}</td>
+                  <td>
+                    <button class="btn btn-danger">
+                      <i class="fas fa-power-off"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!-- fin de todo el contenido de proveedores-->
+    </div>
+</app-header-adm>

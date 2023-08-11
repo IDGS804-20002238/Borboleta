@@ -8,6 +8,8 @@ import { HeaderAdmComponent } from './vistas/Admin/header-adm/header-adm.compone
 import { ErrorsComponent } from './vistas/errors/errors.component';
 import { ProovedoresComponent } from './vistas/Admin/proovedores/proovedores.component';
 import { MateriaPrimaComponent } from './vistas/Admin/materia-prima/materia-prima.component';
+import { ProductosAdminComponent } from './vistas/Admin/productos-admin/productos-admin.component';
+import { ProductosClienteComponent } from './vistas/Cliente/productos-cliente/productos-cliente.component';
 
 
 const routes: Routes = [
@@ -30,6 +32,16 @@ const routes: Routes = [
     path: 'homeAdmin',
     canActivate: [AuthGuardService],
     component: HeaderAdmComponent 
+  },
+  { 
+    path: 'productosAdmin',
+    canActivate: [AuthGuardService],
+    component: ProductosAdminComponent 
+  },
+  { 
+    path: 'productosCliente',
+    canActivate: [AuthGuardService],
+    component: ProductosClienteComponent 
   },
   // Redirige cualquier ruta desconocida a la página de error 404
   { path: '**', redirectTo: 'error' }
