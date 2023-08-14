@@ -24,7 +24,10 @@ export class HeaderComponent {
   onLogOut(): void {
     localStorage.clear();
     this.router.navigate(['/home']);
-    
+  
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
   }
 
   onScroll() {

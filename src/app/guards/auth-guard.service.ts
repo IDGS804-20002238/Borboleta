@@ -12,6 +12,7 @@ export class AuthGuardService implements CanActivate {
     'homeAdmin',
     'materiaPrima',
     'productosAdmin',
+    'materiaPrimaCompras',
   ];
 
   private allowedRoutesForCliente: string[] = [
@@ -34,21 +35,21 @@ export class AuthGuardService implements CanActivate {
   
       case 2: // Empleado
         if (!this.allowedRoutesForEmployee.includes(targetRoute)) {
-          this.router.navigate(['/error']);
+          this.router.navigate(['/forbidden']);
           return false;
         }
         return true;
   
       case 3: // Cliente
         if (!this.allowedRoutesForCliente.includes(targetRoute)) {
-          this.router.navigate(['/error']);
+          this.router.navigate(['/forbidden']);
           return false;
         }
         return true;    
       
       default:
         // Si el idRole no es válido, redirigir a /error
-        this.router.navigate(['/error']);
+        this.router.navigate(['/forbidden']);
         return false;
     }
   }

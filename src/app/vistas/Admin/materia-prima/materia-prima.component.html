@@ -13,7 +13,7 @@
               <div class="form-group col-md-4">
                 <label for="nombrePro">Nombre Materia de la Prima:</label>
                 <input type="text" class="form-control" id="nombre" [(ngModel)]="nombre" name="nombre"
-                  placeholder="Nombre Materia de la Prima"  />
+                  placeholder="Nombre Materia de la Prima" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '')" />
               </div>
               <div class="form-group col-md-4">
                 <label for="telPro">Costo de la materia prima:($MXN)</label>
@@ -51,6 +51,68 @@
         </div>
       </div>
     </div>
+    <!--Materia prima por puntos-->
+    <section>
+      <div class="card shadow mb-4" *ngIf="divVisibleAgregar">
+        <a href="#collapseCardExample2" class="d-block card-header py-3" data-toggle="collapse" role="button"
+          aria-expanded="false" aria-controls="collapseCardExample2">
+          <h6 class="m-0 font-weight-bold text-primary">
+            Materia Prima Por Puntos
+          </h6>
+        </a>
+        <div class="collapse hide" id="collapseCardExample2">
+          <div class="card-body">
+            <div class="d-flex align-items-center justify-content-center">
+              <div class="form-row">
+                <form class="row login_form" (submit)="onRegisterMateriaPrimaMP()">
+                  <div class="form-group col-md-4">
+                    <label for="nombrePro">Nombre Materia de la Prima:</label>
+                    <input type="text" class="form-control" id="nombreMP" [(ngModel)]="nombreMP" name="nombreMP"
+                      placeholder="Nombre Materia de la Prima"  oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '')"/>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="nombrePro">Punto (MX):</label>
+                    <input type="text" class="form-control" id="punto" [(ngModel)]="puntoMP" name="punto"
+                      placeholder="Punto"  oninput="this.value=this.value.replace(/[^0-9.]/g, '')"/>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="telPro">Costo de la materia prima:($MXN)</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">$</span>
+                      </div>
+                      <input type="text" class="form-control" id="costoMP" [(ngModel)]="costoMP" name="costoMP"
+                        placeholder="Costo" required oninput="this.value=this.value.replace(/[^0-9.]/g, '')" />
+                    </div>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="selectProveedor">Seleccionar Proveedor:</label>
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" id="selectProveedorDropdown"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ getProveedorNombre(selectedProveedorinMP) || 'Seleccione un proveedor' }}
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="selectProveedorDropdown">
+                        <a class="dropdown-item" *ngFor="let proveedor of proveedores"
+                          (click)="selectedProveedorMP(proveedor.idProveedor)">{{ proveedor.nombre }}</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="imagen">Imagen:</label>
+                    <input type="file" class="form-control-file" id="imagen" (change)="onImageSelected($event)"
+                      accept="image/*">
+                  </div>
+                  <div class="col-md-12 form-group">
+                    <button type="submit" class="primary-btn">Registrar Materia Prima Por Puntos</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <!-- div para edicion -->
     <div *ngIf="divVisibleComprar" >
       <!-- Contenido del div -->
@@ -135,6 +197,44 @@
                 <td>${{ matPrima.costo }}</td>
                 <td>
                   <button class="btn btn-danger" (click)="toggleDiv(matPrima)">
+                    <i class="fas fa-power-off"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="card shadow mb-4">
+      <a href="#collapseCardExample3" class="d-block card-header py-3" data-toggle="collapse" role="button"
+        aria-expanded="true" aria-controls="collapseCardExample3">
+        <h6 class="m-0 font-weight-bold text-primary">
+          Materia Prima por Puntos
+        </h6>
+      </a>
+      <div class="collapse show" id="collapseCardExample3">
+        <div class="card-body">
+          <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Existencia (Unidades o metros)</th>
+                <th>Costo $MXN (Unidades o metros)</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let matPrimaP of matPrimaP">
+                <td>
+                  <img [src]="'../../../../assets/img/fotosGuardadas/' + matPrimaP.image_name" alt="Imagen" width="50" height="50">
+                </td>
+                <td>{{ matPrimaP.nombreMateriaPrima }}</td>
+                <td>{{ matPrimaP.cantidadTotal }}</td>
+                <td>${{ matPrimaP.costo }}</td>
+                <td>
+                  <button class="btn btn-danger" (click)="toggleDiv(matPrimaP)">
                     <i class="fas fa-power-off"></i>
                   </button>
                 </td>

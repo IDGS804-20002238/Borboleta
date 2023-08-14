@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
 
 import { AuthGuardService } from './guards/auth-guard.service';
 import { AppRoutingModule } from './app-routing.module';
@@ -21,6 +24,8 @@ import { FooterAdminComponent } from './vistas/Admin/footer-admin/footer-admin.c
 import { MateriaPrimaComponent } from './vistas/Admin/materia-prima/materia-prima.component';
 import { ProductosAdminComponent } from './vistas/Admin/productos-admin/productos-admin.component';
 import { ProductosClienteComponent } from './vistas/Cliente/productos-cliente/productos-cliente.component';
+import { ForbiddenComponent } from './vistas/forbidden/forbidden.component';
+import { MateriaPrimaComprasComponent } from './vistas/Admin/materia-prima-compras/materia-prima-compras.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +42,8 @@ import { ProductosClienteComponent } from './vistas/Cliente/productos-cliente/pr
     MateriaPrimaComponent,
     ProductosAdminComponent,
     ProductosClienteComponent,
+    ForbiddenComponent,
+    MateriaPrimaComprasComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +51,9 @@ import { ProductosClienteComponent } from './vistas/Cliente/productos-cliente/pr
     FormsModule,
     HttpClientModule,
     RouterModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatTableModule,
     BsDropdownModule.forRoot()
   ],
   providers: [

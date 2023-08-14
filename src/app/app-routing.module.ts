@@ -6,8 +6,10 @@ import { RegistroComponent } from './vistas/registro/registro.component';
 import { AuthGuardService } from './guards/auth-guard.service';
 import { HeaderAdmComponent } from './vistas/Admin/header-adm/header-adm.component';
 import { ErrorsComponent } from './vistas/errors/errors.component';
+import { ForbiddenComponent } from './vistas/forbidden/forbidden.component';
 import { ProovedoresComponent } from './vistas/Admin/proovedores/proovedores.component';
 import { MateriaPrimaComponent } from './vistas/Admin/materia-prima/materia-prima.component';
+import { MateriaPrimaComprasComponent } from './vistas/Admin/materia-prima-compras/materia-prima-compras.component';
 import { ProductosAdminComponent } from './vistas/Admin/productos-admin/productos-admin.component';
 import { ProductosClienteComponent } from './vistas/Cliente/productos-cliente/productos-cliente.component';
 
@@ -18,6 +20,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'registro', component: RegistroComponent },
   { path: 'error', component:  ErrorsComponent},
+  { path: 'forbidden', component:  ForbiddenComponent},
   { 
     path: 'proovedores', 
     canActivate: [AuthGuardService],
@@ -27,6 +30,11 @@ const routes: Routes = [
     path: 'materiaPrima', 
     canActivate: [AuthGuardService],
     component:  MateriaPrimaComponent
+  },
+  { 
+    path: 'materiaPrimaCompras', 
+    canActivate: [AuthGuardService],
+    component:  MateriaPrimaComprasComponent
   },
   { 
     path: 'homeAdmin',

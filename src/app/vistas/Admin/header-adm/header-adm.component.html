@@ -32,11 +32,21 @@
               <span>Proveedores</span>
             </a>
         </li>
+        <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link" routerLink="/materiaPrima">
-                <i class="fas fa-box-open"></i>
-              <span>Materia Prima</span>
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMateriaPrima"
+                aria-expanded="true" aria-controls="collapseMateriaPrima">
+                <i class="fas fa-fw fa-wrench"></i>
+                <span>Materia Prima</span>
             </a>
+            <div id="collapseMateriaPrima" class="collapse" aria-labelledby="headingMateriaPrima"
+                data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Paginas Materia Prima:</h6>
+                    <a class="collapse-item" routerLink="/materiaPrima">Agregar Materia Prima</a>
+                    <a class="collapse-item" routerLink="/materiaPrimaCompras">Historico de Compras</a>
+                </div>
+            </div>
         </li>
         <li class="nav-item">
             <a class="nav-link" routerLink="/productosAdmin">

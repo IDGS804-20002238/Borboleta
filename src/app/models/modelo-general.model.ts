@@ -24,6 +24,15 @@ export interface materiaPrima {
   image_name: string;
 }
 
+export interface materiaPrimaPuntos {
+  materiaPrimaId: number;
+  provedoresId: number;
+  nombreMateriaPrima: string;
+  cantidadTotal: number;
+  costo: number;
+  image_name: string;
+}
+
 export interface productos{
   idProducto: number,
   nombre: string,

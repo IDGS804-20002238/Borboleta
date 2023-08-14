@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Proveedor } from './models/modelo-general.model';
 import { ProveedorInAct } from './models/modelo-general.model';
 import { materiaPrima } from './models/modelo-general.model';
+import { materiaPrimaPuntos } from './models/modelo-general.model';
 import { productos } from './models/modelo-general.model';
 
 
@@ -92,9 +93,10 @@ export class ProyectoApiService {
   /* -----------------------------------------------------------Materia Prima--------------------------------------------------------*/
 
   private apiUrlRegistrarMateriaPrima = 'https://localhost:7109/tenis/NuevaMateriaPrima';
-  private apiUrlMostrarMateriaPrima = 'https://localhost:7109/tenis/MostrarMateriaPrima'; 
+  private apiUrlMostrarMateriaPrima = 'https://localhost:7109/tenis/MostrarMateriaPrimaNormal'; 
   private apiUrlComprarMateriaPrima = 'https://localhost:7109/tenis/ComprarMateriaPrima'; 
-
+  private apiUrlMostrarMateriaPrimaPuntos ='https://localhost:7109/tenis/MostrarMateriaPrimaPuntos';
+  private apiUrlComprarMateriaPrimaPuntos = 'https://localhost:7109/tenis/ComprarMateriaPrimaPorPuntos';
 
 
   onRegisterMateriaPrima(data: any): Observable<any>{
@@ -124,6 +126,24 @@ export class ProyectoApiService {
     });
     // Realizar la solicitud HTTP POST con los datos en el cuerpo
     return this.http.post<any>(`${this.apiUrlComprarMateriaPrima}`, data, { headers: headers });
+  }
+
+  onCompraMateriaPrimaPuntos(data: any): Observable<any>{
+    console.log('esto lleva data de la api',data);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    // Realizar la solicitud HTTP POST con los datos en el cuerpo
+    return this.http.post<any>(`${this.apiUrlComprarMateriaPrimaPuntos}`, data, { headers: headers });
+  }
+
+  getAllMateriaPrimaPuntos(): Observable<materiaPrimaPuntos[]> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    // Realizar la solicitud HTTP POST vacía, ya que no se requiere enviar datos en el cuerpo
+    return this.http.post<materiaPrimaPuntos[]>(this.apiUrlMostrarMateriaPrimaPuntos, {}, { headers: headers });
   }
 
 
