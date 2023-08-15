@@ -41,4 +41,14 @@ export interface productos{
   image_name: string,
   estatus: number
 }
+
+export interface agregarMateriaPrima {
+  materiaPrimaId: number;
+  provedoresId: number;
+  nombreMateriaPrima: string;
+  cantidadTotal: number;
+  costo: number;
+  image_name: string;
+  cantidadUsoMateria: number;
+}
   

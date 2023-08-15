@@ -17,7 +17,7 @@ export class ProductosClienteComponent implements OnInit{
 
 
   obtenerProductos(): void {
-    this.proyectoApiService.getAllProductos().subscribe(
+    this.proyectoApiService.getAllProductosActivos().subscribe(
       (data) => {
         this.productos = data;
         console.log(data);

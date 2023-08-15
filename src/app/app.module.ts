@@ -5,6 +5,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AuthGuardService } from './guards/auth-guard.service';
 import { AppRoutingModule } from './app-routing.module';
@@ -46,6 +47,7 @@ import { MateriaPrimaComprasComponent } from './vistas/Admin/materia-prima-compr
     MateriaPrimaComprasComponent,
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,

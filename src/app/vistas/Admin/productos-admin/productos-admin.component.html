@@ -1,46 +1,123 @@
 <app-header-adm>
-    <!-- Tenemos que usar el div con la clase main-content para que se inserte dentro del topbar y el sidebar-->
-    <div class="container-fluid main-content">
-      <!-- inicio de todo el contenido de proveedores-->
-        <!--inicio div tabla-->
+  <!-- Tenemos que usar el div con la clase main-content para que se inserte dentro del topbar y el sidebar-->
+  <div class="container-fluid main-content">
+    <!-- inicio de todo el contenido de proveedores-->
+    <!--Div agregar productos-->
     <div class="card shadow mb-4">
-        <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button"
-          aria-expanded="true" aria-controls="collapseCardExample">
-          <h6 class="m-0 font-weight-bold text-primary">
-            Productos
-          </h6>
-        </a>
-        <div class="collapse show" id="collapseCardExample">
-          <div class="card-body">
-            <table class="table table-bordered table-striped">
-              <thead class="thead-dark">
-                <tr>
-                  <th>Imagen</th>
-                  <th>Nombre</th>
-                  <th>Precio</th>
-                  <th>descripccion</th>
-                  <th>Acciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let productos of productos">
-                  <td>
-                    <img [src]="'../../../../assets/img/fotosGuardadas/' + productos.image_name" alt="Imagen" width="50" height="50">
-                  </td>
-                  <td>{{ productos.nombre }}</td>
-                  <td>${{ productos.precio }}</td>
-                  <td>{{ productos.descripccion }}</td>
-                  <td>
-                    <button class="btn btn-danger">
-                      <i class="fas fa-power-off"></i>
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Agregar Proveedores</h6>
+      </div>
+      <div class="card-body">
+        <div class="d-flex align-items-center justify-content-center">
+          <div class="form-row">
+            <form class="row login_form" (submit)="onRegisterProducto()">
+              <div class="form-group col-md-6">
+                <label for="nombrePro">Nombre Proveedor:</label>
+                <input type="text" class="form-control" id="nombre" [(ngModel)]="nombre" name="nombre" placeholder="Nombre del Proveedor" required/>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="telPro">Precio</label>
+                <input type="text" class="form-control" id="precio" [(ngModel)]="precio" name="precio" placeholder="No. teléfono" required oninput="this.value=this.value.replace(/[^0-9]/g,'')"/>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="nombrePro">Descripccion:</label>
+                <input type="text" class="form-control" id="descripcion" [(ngModel)]="descripcion" name="descripcion" placeholder="Nombre del Proveedor" required/>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="imagen">Imagen:</label>
+                <input type="file" class="form-control-file" id="imagen" (change)="onImageSelected($event)"
+                  accept="image/*">
+              </div>
+              <div class="col-md-12 form-group">
+                <button type="submit" class="primary-btn">Registrar Proveedor</button>
+              </div>
+            </form>
           </div>
         </div>
+        
       </div>
-      <!-- fin de todo el contenido de proveedores-->
     </div>
+
+    <!--inicio div tabla Prodcutos Activos-->
+    <div class="card shadow mb-4">
+      <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button"
+        aria-expanded="true" aria-controls="collapseCardExample">
+        <h6 class="m-0 font-weight-bold text-primary">
+          Productos
+        </h6>
+      </a>
+      <div class="collapse show" id="collapseCardExample">
+        <div class="card-body">
+          <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>descripccion</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let productos of productos">
+                <td>
+                  <img [src]="'../../../../assets/img/fotosGuardadas/' + productos.image_name" alt="Imagen" width="50"
+                    height="50">
+                </td>
+                <td>{{ productos.nombre }}</td>
+                <td>${{ productos.precio }}</td>
+                <td>{{ productos.descripccion }}</td>
+                <td>
+                  <button class="btn btn-danger" (click)="cambiarEstatusProducto(productos.idProducto, 1)">
+                    <i class="fas fa-power-off"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!--Productos Inactivos-->
+    <div class="card shadow mb-4">
+      <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button"
+        aria-expanded="true" aria-controls="collapseCardExample">
+        <h6 class="m-0 font-weight-bold text-primary">
+          Productos
+        </h6>
+      </a>
+      <div class="collapse show" id="collapseCardExample">
+        <div class="card-body">
+          <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>descripccion</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let productosInActivos of productosInActivos">
+                <td>
+                  <img [src]="'../../../../assets/img/fotosGuardadas/' + productosInActivos.image_name" alt="Imagen"
+                    width="50" height="50">
+                </td>
+                <td>{{ productosInActivos.nombre }}</td>
+                <td>${{ productosInActivos.precio }}</td>
+                <td>{{ productosInActivos.descripccion }}</td>
+                <td>
+                  <button class="btn btn-danger" (click)="cambiarEstatusProducto(productosInActivos.idProducto, 0)">
+                    <i class="fas fa-power-off"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- fin de todo el contenido de proveedores-->
+  </div>
 </app-header-adm>

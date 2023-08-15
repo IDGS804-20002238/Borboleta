@@ -5,6 +5,7 @@ import { Proveedor } from './models/modelo-general.model';
 import { ProveedorInAct } from './models/modelo-general.model';
 import { materiaPrima } from './models/modelo-general.model';
 import { materiaPrimaPuntos } from './models/modelo-general.model';
+import { agregarMateriaPrima } from './models/modelo-general.model';
 import { productos } from './models/modelo-general.model';
 
 
@@ -94,6 +95,7 @@ export class ProyectoApiService {
 
   private apiUrlRegistrarMateriaPrima = 'https://localhost:7109/tenis/NuevaMateriaPrima';
   private apiUrlMostrarMateriaPrima = 'https://localhost:7109/tenis/MostrarMateriaPrimaNormal'; 
+  private apiUrlObtenerMateriaPrimaCompleta = 'https://localhost:7109/tenis/MostrarMateriaPrima';
   private apiUrlComprarMateriaPrima = 'https://localhost:7109/tenis/ComprarMateriaPrima'; 
   private apiUrlMostrarMateriaPrimaPuntos ='https://localhost:7109/tenis/MostrarMateriaPrimaPuntos';
   private apiUrlComprarMateriaPrimaPuntos = 'https://localhost:7109/tenis/ComprarMateriaPrimaPorPuntos';
@@ -108,7 +110,14 @@ export class ProyectoApiService {
     return this.http.post<any>(`${this.apiUrlRegistrarMateriaPrima}`, data, { headers: headers });
   }
 
+  getAllMateriaPrimaCompleta(): Observable<agregarMateriaPrima[]> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
 
+    // Realizar la solicitud HTTP POST vacía, ya que no se requiere enviar datos en el cuerpo
+    return this.http.post<agregarMateriaPrima[]>(this.apiUrlObtenerMateriaPrimaCompleta, {}, { headers: headers });
+  }
 
   getAllMateriaPrima(): Observable<materiaPrima[]> {
     const headers = new HttpHeaders({
@@ -150,9 +159,11 @@ export class ProyectoApiService {
   /* -----------------------------------------------------------Productos--------------------------------------------------------*/
 
 
-  private apiUrlgetallProductos = 'https://localhost:7109/tenis/MostrarProductosActivos'; 
+  private apiUrlgetallProductos = 'https://localhost:7109/tenis/MostrarProductosActivos';
+  private apiUrlgetallProductosInActivos = 'https://localhost:7109/tenis/MostrarProductosInactivos'; 
+  private apiUrlCambiarEstatusProducto = 'https://localhost:7109/tenis/CambiarEstatusProducto';
 
-  getAllProductos(): Observable<productos[]> {
+  getAllProductosActivos(): Observable<productos[]> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
@@ -160,6 +171,25 @@ export class ProyectoApiService {
     // Realizar la solicitud HTTP POST vacía, ya que no se requiere enviar datos en el cuerpo
     return this.http.post<productos[]>(this.apiUrlgetallProductos, {}, { headers: headers });
   }
+  getAllProductosInActivos(): Observable<productos[]> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    // Realizar la solicitud HTTP POST vacía, ya que no se requiere enviar datos en el cuerpo
+    return this.http.post<productos[]>(this.apiUrlgetallProductosInActivos, {}, { headers: headers });
+  }
+
+  cambiarEstatusProducto(data: any): Observable<any>{
+    console.log('esto lleva data de la api',data);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    // Realizar la solicitud HTTP POST con los datos en el cuerpo
+    return this.http.post<any>(`${this.apiUrlCambiarEstatusProducto}`, data, { headers: headers });
+  }
+
+
 
   
 
