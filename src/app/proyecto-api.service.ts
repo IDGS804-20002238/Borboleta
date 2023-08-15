@@ -162,6 +162,9 @@ export class ProyectoApiService {
   private apiUrlgetallProductos = 'https://localhost:7109/tenis/MostrarProductosActivos';
   private apiUrlgetallProductosInActivos = 'https://localhost:7109/tenis/MostrarProductosInactivos'; 
   private apiUrlCambiarEstatusProducto = 'https://localhost:7109/tenis/CambiarEstatusProducto';
+  private apiUrlRegistrarNuevoProducto = 'https://localhost:7109/tenis/NuevoProducto';
+  private apiUrlRegistrarPuntoProducto = 'https://localhost:7109/tenis/RegistrarPuntosProducto';
+  private apiUrlIdProductoDetalle = 'https://localhost:7109/tenis/MostrarDetalleProductoPorId';
 
   getAllProductosActivos(): Observable<productos[]> {
     const headers = new HttpHeaders({
@@ -189,7 +192,36 @@ export class ProyectoApiService {
     return this.http.post<any>(`${this.apiUrlCambiarEstatusProducto}`, data, { headers: headers });
   }
 
+  //regisrtrar producto---------------------------------------------------------------------------------
 
+
+  registrarNuevoProducto(data: any): Observable<any>{
+    console.log('esto lleva data de la api',data);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    // Realizar la solicitud HTTP POST con los datos en el cuerpo
+    return this.http.post<any>(`${this.apiUrlRegistrarNuevoProducto}`, data, { headers: headers });
+  }
+  registrarPuntoProducto(data: any): Observable<any>{
+    console.log('esto lleva data de la api',data);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    // Realizar la solicitud HTTP POST con los datos en el cuerpo
+    return this.http.post<any>(`${this.apiUrlRegistrarPuntoProducto}`, data, { headers: headers });
+  }
+
+  getIdProductoDetalle(data: any): Observable<any>{
+    console.log('esto lleva data de la api',data);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    // Realizar la solicitud HTTP POST con los datos en el cuerpo
+    return this.http.post<any>(`${this.apiUrlIdProductoDetalle}`, data, { headers: headers });
+  }
+
+  
 
   
 
