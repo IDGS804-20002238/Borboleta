@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
   idRole: number = 0;
+  Nombre: string = '';
 
   constructor(private router: Router) { }
 
@@ -15,9 +16,11 @@ export class HeaderComponent {
 
   ngOnInit(): void {
     // Obtener el idRole del localStorage
+    const storednombre = localStorage.getItem('nombre');
     const storedIdRole = localStorage.getItem('idRole');
     if (storedIdRole) {
       this.idRole = +storedIdRole;
+      this.Nombre + storednombre;
     }
   }
 

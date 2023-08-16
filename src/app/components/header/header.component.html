@@ -40,7 +40,35 @@
                         </li>
                         
                         <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link" *ngIf="idRole === 1 || idRole === 2 || idRole === 3" (click)="onLogOut()">LogOut</a></li>
+
+                            <!-- Topbar Navbar -->
+                            <ul class="navbar-nav ml-auto" *ngIf="idRole === 1 || idRole === 2 || idRole === 3">
+            
+                                <!-- Nav Item - User Information -->
+                                <li class="nav-item dropdown no-arrow">
+                                    <a class="nav-link dropdown-toggle" id="userDropdown" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Nombre }}</span>
+                                        <img class="img-profile rounded-circle" src="../../../../assets/img/undraw_profile.svg" width="25"
+                                        height="25"/>
+                                    </a>
+                                    <!-- Dropdown - User Information -->
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                        aria-labelledby="userDropdown">
+                                        <a class="dropdown-item" routerLink="/perfilCliente">
+                                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            Profile
+                                        </a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" (click)="onLogOut()" data-toggle="modal" data-target="#logoutModal">
+                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            Logout
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+
+                        <!-- <li class="nav-item"><a class="nav-link" *ngIf="idRole === 1 || idRole === 2 || idRole === 3" (click)="onLogOut()">LogOut</a></li> -->
                     </ul>
                     <ul class="nav navbar-nav navbar-right" *ngIf="idRole === 1 || idRole === 2 || idRole === 3">
                         <li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>

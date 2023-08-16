@@ -7,6 +7,8 @@ import { materiaPrima } from './models/modelo-general.model';
 import { materiaPrimaPuntos } from './models/modelo-general.model';
 import { agregarMateriaPrima } from './models/modelo-general.model';
 import { productos } from './models/modelo-general.model';
+import { domicilio } from './models/modelo-general.model';
+
 
 
 @Injectable({
@@ -21,6 +23,8 @@ export class ProyectoApiService {
   private apiUrlLogin = 'https://localhost:7109/tenis/login';
   private apiUrlRegistro = 'https://localhost:7109/tenis/Registrase'; 
   private apiUrlDomicilio = 'https://localhost:7109/tenis/ConsultarDomicilioPorIdUsuario'
+  private apiUrlUpdateDomicilio = 'https://localhost:7109/tenis/ActualizarUsuario';
+  
 
   login(email: string, password: string): Observable<any> {
     const headers = new HttpHeaders({
@@ -45,6 +49,28 @@ export class ProyectoApiService {
     // Realizar la solicitud HTTP POST con los datos en el cuerpo
     return this.http.post<any>(`${this.apiUrlRegistro}`, data, { headers: headers });
   }
+
+  getDomiciliobyId(data: any): Observable<domicilio[]> {
+    console.log('esto lleva data de la api',data)
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    // Realizar la solicitud HTTP POST vacía, ya que no se requiere enviar datos en el cuerpo
+    return this.http.post<domicilio[]>(`${this.apiUrlDomicilio}`, data, { headers: headers });
+  }
+
+  actualizarDomicilio(data: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    // Realizar la solicitud HTTP POST con los datos en el cuerpo
+    return this.http.post<any>(`${this.apiUrlUpdateDomicilio}`, data, { headers: headers });
+  }
+
+  
+
 
 
 
@@ -232,6 +258,15 @@ export class ProyectoApiService {
     });
     // Realizar la solicitud HTTP POST con los datos en el cuerpo
     return this.http.post<any>(`${this.apiUrlRegistrarMateriaPrimaProducto}`, data, { headers: headers });
+  }
+
+  getAllMateriaPrimaCompletaProductos(): Observable<materiaPrima[]> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    // Realizar la solicitud HTTP POST vacía, ya que no se requiere enviar datos en el cuerpo
+    return this.http.post<materiaPrima[]>(this.apiUrlObtenerMateriaPrimaCompleta, {}, { headers: headers });
   }
 
   

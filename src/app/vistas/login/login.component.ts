@@ -19,8 +19,10 @@ export class LoginComponent {
         (data) => {
           const idRole = data[0].idRole;
           const nombre = data[0].nombre;
+          const idUsuario = data[0].idUsuario;
           localStorage.setItem('idRole', idRole);
           localStorage.setItem('Nombre', nombre); 
+          localStorage.setItem('idUsuario', idUsuario); 
 
           if (idRole === 1) {
             this.router.navigate(['/homeAdmin']);

@@ -12,6 +12,11 @@ import { MateriaPrimaComponent } from './vistas/Admin/materia-prima/materia-prim
 import { MateriaPrimaComprasComponent } from './vistas/Admin/materia-prima-compras/materia-prima-compras.component';
 import { ProductosAdminComponent } from './vistas/Admin/productos-admin/productos-admin.component';
 import { ProductosClienteComponent } from './vistas/Cliente/productos-cliente/productos-cliente.component';
+import { InfoProcutosAdminComponent } from './vistas/Admin/info-procutos-admin/info-procutos-admin.component';
+import { PerfilAdminComponent } from './vistas/Admin/perfil-admin/perfil-admin.component';
+import { PerfilClienteComponent } from './vistas/Cliente/perfil-cliente/perfil-cliente.component'
+
+
 
 
 const routes: Routes = [
@@ -51,6 +56,22 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
     component: ProductosClienteComponent 
   },
+  { 
+    path: 'infoProductos',
+    canActivate: [AuthGuardService],
+    component: InfoProcutosAdminComponent 
+  },
+  { 
+    path: 'perfilAdm',
+    canActivate: [AuthGuardService],
+    component: PerfilAdminComponent 
+  },
+  { 
+    path: 'perfilCliente',
+    canActivate: [AuthGuardService],
+    component: PerfilClienteComponent 
+  },
+  
   // Redirige cualquier ruta desconocida a la página de error 404
   { path: '**', redirectTo: 'error' }
 ];

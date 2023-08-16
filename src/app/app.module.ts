@@ -6,6 +6,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AuthGuardService } from './guards/auth-guard.service';
 import { AppRoutingModule } from './app-routing.module';
@@ -27,6 +28,9 @@ import { ProductosAdminComponent } from './vistas/Admin/productos-admin/producto
 import { ProductosClienteComponent } from './vistas/Cliente/productos-cliente/productos-cliente.component';
 import { ForbiddenComponent } from './vistas/forbidden/forbidden.component';
 import { MateriaPrimaComprasComponent } from './vistas/Admin/materia-prima-compras/materia-prima-compras.component';
+import { InfoProcutosAdminComponent } from './vistas/Admin/info-procutos-admin/info-procutos-admin.component';
+import { PerfilAdminComponent } from './vistas/Admin/perfil-admin/perfil-admin.component';
+import { PerfilClienteComponent } from './vistas/Cliente/perfil-cliente/perfil-cliente.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +49,9 @@ import { MateriaPrimaComprasComponent } from './vistas/Admin/materia-prima-compr
     ProductosClienteComponent,
     ForbiddenComponent,
     MateriaPrimaComprasComponent,
+    InfoProcutosAdminComponent,
+    PerfilAdminComponent,
+    PerfilClienteComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -56,6 +63,7 @@ import { MateriaPrimaComprasComponent } from './vistas/Admin/materia-prima-compr
     MatPaginatorModule,
     MatSortModule,
     MatTableModule,
+    NgxPaginationModule,
     BsDropdownModule.forRoot()
   ],
   providers: [

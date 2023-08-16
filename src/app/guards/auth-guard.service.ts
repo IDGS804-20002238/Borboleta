@@ -13,12 +13,15 @@ export class AuthGuardService implements CanActivate {
     'materiaPrima',
     'productosAdmin',
     'materiaPrimaCompras',
+    'infoProductos',
+    'perfilAdm',
   ];
 
   private allowedRoutesForCliente: string[] = [
     'login',
     'home',
     'productosCliente',
+    'perfilCliente',
   ];
 
   constructor(private router: Router) {}
