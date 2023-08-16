@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ProyectoApiService } from '../../../proyecto-api.service';
 import { productos } from '../../../models/modelo-general.model';
 import { DetallePorProductoId } from '../../../models/modelo-general.model';
+import { materiaPrima } from '../../../models/modelo-general.model';
+import { materiaPrimaPuntos } from '../../../models/modelo-general.model';
 import Swal from 'sweetalert2';
 
 
@@ -17,6 +19,13 @@ export class ProductosAdminComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerProductosActivos();
     this.obtenerProductosInActivos();
+    this.obtenerMateriaPrima();
+    this.obtenerMateriaPrimaPuntos();
+
+    const storedSelectedMaterias = localStorage.getItem('selectedMaterias');
+    if (storedSelectedMaterias) {
+      this.selectedMaterias = JSON.parse(storedSelectedMaterias);
+    }
   }
   productos: productos[] = [];
   productosInActivos: productos[] = [];
@@ -31,6 +40,15 @@ export class ProductosAdminComponent implements OnInit {
   idUltimoProducto: number | undefined;
   detallesPorProducto: DetallePorProductoId[] = [];
   idProductoDetalleGlobal: number = 0;
+
+  matPrima: materiaPrima[] = [];
+  matPrimaP: materiaPrimaPuntos[] = [];
+
+  selectedMaterias: any[] = [];
+  materiaPrimaSeleccionada: number | null = null;
+  selectedMateriaPrima: number = 0;
+  cantidadMateriaPrima: number = 0;
+  materiaPrimaArray: any[] = [];
   //-------------------------------------
 
 
@@ -51,8 +69,7 @@ export class ProductosAdminComponent implements OnInit {
       descripcion: this.descripcion,
       imageName: this.image_name,
     };
-    console.log('dataNuevoProducto: ', dataNuevoProducto);
-
+  
     Swal.fire({
       title: '¿Registrar Producto?',
       text: '¿Estás seguro que deseas registrar este producto?',
@@ -64,40 +81,58 @@ export class ProductosAdminComponent implements OnInit {
       if (result.isConfirmed) {
         this.proyectoApiService.registrarNuevoProducto(dataNuevoProducto).subscribe(
           (response) => {
-            console.log(`Este es el response`, response);
             if (response && response.isSuccessStatusCode) {
-              console.log('¡producto registrado!');
-
-              // Obtener el idProducto del último producto
               this.proyectoApiService.getAllProductosActivos().subscribe(
                 (data) => {
-                  this.productos = data;
-                  console.log(data);
                   if (data.length > 0) {
                     const ultimoProducto = data[data.length - 1];
                     this.idUltimoProducto = ultimoProducto.idProducto;
-                    console.log('Id del último producto:', this.idUltimoProducto);
-              
+  
                     const dataPuntoProducto = {
                       idProducto: this.idUltimoProducto,
-                      punto: this.precio,
+                      punto: this.punto,
                     };
-              
+  
                     this.proyectoApiService.registrarPuntoProducto(dataPuntoProducto).subscribe(
                       (response) => {
                         if (response && response.isSuccessStatusCode) {
-                          console.log('¡punto registrado!');
-
                           const dataProductoDetalle = {
                             idProducto: this.idUltimoProducto,
                           };
-                          // Obtener los detalles del producto y guardarlos en detallesPorProducto
+  
                           this.proyectoApiService.getIdProductoDetalle(dataProductoDetalle).subscribe(
                             (response) => {
                               if (response) {
                                 this.idProductoDetalleGlobal = response[0].idProductoDetalle;
-                                console.log('idProductoDetalle:', this.idProductoDetalleGlobal);
-
+  
+                                // Reemplazar idProductoDetalle en los objetos del array
+                                this.materiaPrimaArray.forEach((obj) => {
+                                  obj.idProductoDetalle = this.idProductoDetalleGlobal;
+                                  obj.cantidadUsoMateria = parseInt(obj.cantidadUsoMateria, 10); // Convertir a número entero
+                                });
+  
+                                // Recorrer el array y hacer una solicitud a la API para cada detalle
+                                for (const detalle of this.materiaPrimaArray) {
+                                  const dataToSend = {
+                                    idProductoDetalle: detalle.idProductoDetalle,
+                                    materiaPrimaId: detalle.materiaPrimaId,
+                                    cantidadUsoMateria: detalle.cantidadUsoMateria,
+                                  };
+                                
+                                  this.proyectoApiService.agregarMateriaPrimaProducto(dataToSend).subscribe(
+                                    (response) => {
+                                      console.log('esto trae el response de agregar la materiaprima al producto', response);
+                                      if (response && response.error && typeof response.error === 'string') {
+                                        console.log('Mensaje de error en el response:', response.error);
+                                      }
+                                      // Puedes manejar la respuesta exitosa de la API aquí
+                                    },
+                                    (error) => {
+                                      console.error('Error en la solicitud a la API:', error);
+                                      // Puedes manejar el error aquí
+                                    }
+                                  );                                  
+                                }
                               }
                             }
                           );
@@ -107,11 +142,6 @@ export class ProductosAdminComponent implements OnInit {
                   }
                 },
               );
-              
-
-
-
-              //fin productos
             } else {
               console.log('No se pudo registrar el producto');
             }
@@ -120,7 +150,59 @@ export class ProductosAdminComponent implements OnInit {
       }
     });
   }
+  
+  
+  
+  
+  
 
+  getMateriaPrimaNombre(materiaPrimaId: number): string {
+    const materiaPrima = this.matPrima.find(matPrima => matPrima.materiaPrimaId === materiaPrimaId);
+    return materiaPrima ? materiaPrima.nombreMateriaPrima : '';
+  }
+
+  selectMateriaPrima(materiaPrimaId: number): void {
+    this.selectedMateriaPrima = materiaPrimaId;
+  }
+
+  obtenerMateriaPrima(): void {
+    this.proyectoApiService.getAllMateriaPrima().subscribe(
+      (data) => {
+        this.matPrima = data;
+      },
+      (error) => {
+        console.error('Error al obtener la materia prima', error);
+      }
+    );
+  }
+
+  obtenerMateriaPrimaPuntos(): void {
+    this.proyectoApiService.getAllMateriaPrimaPuntos().subscribe(
+      (data) => {
+        this.matPrimaP = data;
+      },
+      (error) => {
+        console.error('Error al obtener la materia prima', error);
+      }
+    );
+  }
+
+  pushMateriaPrima(): void {
+    const nuevoObjeto = {
+      idProductoDetalle: 0, // Puedes dejarlo en 0 o asignarle el valor que corresponda
+      materiaPrimaId: this.selectedMateriaPrima,
+      cantidadUsoMateria: this.cantidadMateriaPrima
+    };
+
+    this.materiaPrimaArray.push(nuevoObjeto);
+
+    // Imprime el array para verificar
+    console.log('Array de Materias Primas:', this.materiaPrimaArray);
+
+    // Limpia los valores para la siguiente entrada
+    this.selectedMateriaPrima = 0;
+    this.cantidadMateriaPrima = 0;
+  }
 
   obtenerProductosActivos(): void {
     this.proyectoApiService.getAllProductosActivos().subscribe(

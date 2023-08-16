@@ -20,7 +20,7 @@ export class ProyectoApiService {
   /* ---------------------------------------------------------------------LOGIN--------------------------------------------------------*/
   private apiUrlLogin = 'https://localhost:7109/tenis/login';
   private apiUrlRegistro = 'https://localhost:7109/tenis/Registrase'; 
-
+  private apiUrlDomicilio = 'https://localhost:7109/tenis/ConsultarDomicilioPorIdUsuario'
 
   login(email: string, password: string): Observable<any> {
     const headers = new HttpHeaders({
@@ -45,6 +45,8 @@ export class ProyectoApiService {
     // Realizar la solicitud HTTP POST con los datos en el cuerpo
     return this.http.post<any>(`${this.apiUrlRegistro}`, data, { headers: headers });
   }
+
+
 
   /* ------------------------------------------------------------------Proveedores--------------------------------------------------------*/
 
@@ -165,6 +167,7 @@ export class ProyectoApiService {
   private apiUrlRegistrarNuevoProducto = 'https://localhost:7109/tenis/NuevoProducto';
   private apiUrlRegistrarPuntoProducto = 'https://localhost:7109/tenis/RegistrarPuntosProducto';
   private apiUrlIdProductoDetalle = 'https://localhost:7109/tenis/MostrarDetalleProductoPorId';
+  private apiUrlRegistrarMateriaPrimaProducto = 'https://localhost:7109/tenis/RegistrarDetalleMateriaProductoPuntos';
 
   getAllProductosActivos(): Observable<productos[]> {
     const headers = new HttpHeaders({
@@ -219,6 +222,16 @@ export class ProyectoApiService {
     });
     // Realizar la solicitud HTTP POST con los datos en el cuerpo
     return this.http.post<any>(`${this.apiUrlIdProductoDetalle}`, data, { headers: headers });
+  }
+
+  
+  agregarMateriaPrimaProducto(data: any): Observable<any>{
+    console.log('esto lleva data de la api',data);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    // Realizar la solicitud HTTP POST con los datos en el cuerpo
+    return this.http.post<any>(`${this.apiUrlRegistrarMateriaPrimaProducto}`, data, { headers: headers });
   }
 
   

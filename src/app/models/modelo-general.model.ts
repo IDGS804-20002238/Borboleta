@@ -66,4 +66,15 @@ export interface DetallePorProductoId {
   cantidad: number;
 }
 
+export interface domicilio{
+  estado: string;
+  municipio: string;
+  codigoPostal: number;
+  colonia: string;
+  calle: string;
+  numeroExt: number;
+  numeroInt: number;
+  referencia: string;
+}
+
   

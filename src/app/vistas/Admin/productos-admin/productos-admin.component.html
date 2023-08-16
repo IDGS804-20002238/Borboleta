@@ -10,7 +10,7 @@
       <div class="card-body">
         <div class="d-flex align-items-center justify-content-center">
           <div class="form-row">
-            <form class="row login_form" (submit)="onRegisterProducto()">
+            <form class="row login_form">
               <div class="form-group col-md-6">
                 <label for="nombrePro">Nombre:</label>
                 <input type="text" class="form-control" id="nombre" [(ngModel)]="nombre" name="nombre" placeholder="Nombre del Producto" required/>
@@ -32,6 +32,35 @@
                 <label for="nombrePro">Punto del Tenis:</label>
                 <input type="text" class="form-control" id="punto" [(ngModel)]="punto" name="punto" placeholder="Nombre del Producto" required/>
               </div>
+              <div class="form-group col-md-4">
+
+              </div>
+              <div class="form-group col-md-4">
+
+              </div>
+              <div class="form-group col-md-4">
+                <label for="selectProveedor">Seleccionar Proveedor:</label>
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="selectProveedorDropdown"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{ getMateriaPrimaNombre(selectedMateriaPrima) || 'Seleccione una materia prima' }}
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="selectProveedorDropdown">
+                    <a class="dropdown-item" *ngFor="let matPrima of matPrima"
+                      (click)="selectMateriaPrima(matPrima.materiaPrimaId)">{{ matPrima.nombreMateriaPrima }}</a>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="nombrePro">Cantidad a usar:</label>
+                <input type="text" class="form-control" id="cantidadMateriaPrima" [(ngModel)]="cantidadMateriaPrima" name="cantidadMateriaPrima" placeholder="Nombre del Producto" required/>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="nombrePro">Agregar materia prima al producto:</label><br>
+                <button type="button" (click)="pushMateriaPrima()" class="btn btn-success"><i class="fas fa-plus"></i></button>
+              </div>
+              
+              
 
 
 
@@ -39,7 +68,7 @@
 
 
               <div class="col-md-12 form-group">
-                <button type="submit" class="primary-btn">Registrar Producto</button>
+                <button type="button" class="primary-btn" (click)="onRegisterProducto()">Registrar Producto</button>
               </div>
             </form>
           </div>
