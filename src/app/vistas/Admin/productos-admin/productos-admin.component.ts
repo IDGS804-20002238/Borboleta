@@ -120,14 +120,26 @@ export class ProductosAdminComponent implements OnInit {
 
                                   this.proyectoApiService.agregarMateriaPrimaProducto(dataToSend).subscribe(
                                     (response) => {
-                                      console.log('esto trae el response de agregar la materiaprima al producto', response);
-                                      if (response && response.error && typeof response.error === 'string') {
-                                        console.log('Mensaje de error en el response:', response.error);
+                                      if(response.statusCode == 200){
+                                        Swal.fire('¡Registro exitoso!', '', 'success').then((result) => {
+                                        window.location.reload();
+                                      });
+                                      }else if (response.statusCode == 500){
+                                        console.log('este es el response',response)
+                                        Swal.fire('¡Error en el servidor!', '', 'error');
+                                      }else if (response.statusCode == 400){
+                                        console.log('este es el response',response)
+                                        Swal.fire('¡Llena los campos para continuar!', '', 'error');
+                                      }
+                                      else{
+                                        Swal.fire('¡Error en el servidor!', '', 'error');
                                       }
                                       // Puedes manejar la respuesta exitosa de la API aquí
                                     },
                                     (error) => {
                                       console.error('Error en la solicitud a la API:', error);
+                                      Swal.fire('¡Llena los campos para continuar!', '', 'error');
+
                                       // Puedes manejar el error aquí
                                     }
                                   );
@@ -216,8 +228,17 @@ export class ProductosAdminComponent implements OnInit {
 
                   this.proyectoApiService.agregarMateriaPrimaProducto(dataToSend).subscribe(
                     (response) => {
-                      console.log('esto trae el response de agregar la materiaprima al producto', response);
-                      // Puedes manejar la respuesta exitosa de la API aquí
+                      if(response.statusCode == 200){
+                        console.log('este es el response',response)
+                        Swal.fire('¡Registro exitoso!', '', 'success').then((result) => {
+                        window.location.reload();
+                      });;
+                      }else if (response.statusCode == 500){
+                        console.log('este es el response',response)
+                        Swal.fire('¡Error en el servidor!', '', 'error');
+                      }else{
+                        Swal.fire('¡Error en el servidor!', '', 'error');
+                      }
                     },
                     (error) => {
                       console.error('Error en la solicitud a la API:', error);

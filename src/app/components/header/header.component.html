@@ -23,12 +23,6 @@
                             </ul>
                         </li>
                         <li class="nav-item submenu dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                             aria-expanded="false">Blog</a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                                <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
-                            </ul>
                         </li>
                         <li class="nav-item submenu dropdown" *ngIf="idRole !== 1 && idRole !== 2 && idRole !== 3">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -38,8 +32,11 @@
                                 <li class="nav-item"><a class="nav-link" routerLink="/registro">Crear Cuenta</a></li>
                             </ul>
                         </li>
+                        <li class="nav-item submenu dropdown">
+                        </li>
+                        <li class="nav-item submenu dropdown">
+                        </li>
                         
-                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
 
                             <!-- Topbar Navbar -->
                             <ul class="navbar-nav ml-auto" *ngIf="idRole === 1 || idRole === 2 || idRole === 3">

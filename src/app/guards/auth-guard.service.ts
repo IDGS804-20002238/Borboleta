@@ -22,6 +22,7 @@ export class AuthGuardService implements CanActivate {
     'home',
     'productosCliente',
     'perfilCliente',
+    'productoDetalleCliente',
   ];
 
   constructor(private router: Router) {}

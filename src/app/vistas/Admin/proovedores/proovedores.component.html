@@ -19,6 +19,30 @@
                 <label for="telPro">No. teléfono:</label>
                 <input type="text" class="form-control" id="telefono" [(ngModel)]="telefono" name="telefono" placeholder="No. teléfono" required/>
               </div>
+              <div class="col-md-6 form-group">
+                <input type="text" class="form-control" id="estado" [(ngModel)]="estado" name="estado" placeholder="Estado" required>
+              </div>
+              <div class="col-md-6 form-group">
+                <input type="text" class="form-control" id="municipio" [(ngModel)]="municipio" name="municipio" placeholder="Municipio" required>
+              </div>
+              <div class="col-md-6 form-group">
+                <input type="text"  oninput="this.value=this.value.replace(/[^0-9]/g,'')" class="form-control" id="codigoPostal" [(ngModel)]="codigoPostal" name="codigoPostal" placeholder="Código Postal" required>
+              </div>
+              <div class="col-md-6 form-group">
+                <input type="text" class="form-control" id="colonia" [(ngModel)]="colonia" name="colonia" placeholder="Colonia" required>
+              </div>
+              <div class="col-md-6 form-group">
+                <input type="text" class="form-control" id="calle" [(ngModel)]="calle" name="calle" placeholder="Calle" required>
+              </div>
+              <div class="col-md-6 form-group">
+                <input type="number" class="form-control" id="numeroExt" [(ngModel)]="numeroExt" name="numeroExt" placeholder="Número Exterior" required>
+              </div>
+              <div class="col-md-6 form-group">
+                <input type="text" oninput="this.value=this.value.replace(/[^0-9]/g,'')" class="form-control" id="numeroInt" [(ngModel)]="numeroInt" name="numeroInt" placeholder="Número Interior (Opcional)" >
+              </div>
+              <div class="col-md-6 form-group">
+                <input type="text" class="form-control" id="referencia" [(ngModel)]="referencia" name="referencia" placeholder="Referencia" required>
+              </div>
               <div class="col-md-12 form-group">
                 <button type="submit" class="primary-btn">Registrar Proveedor</button>
               </div>

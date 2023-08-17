@@ -5,29 +5,25 @@
       <table class="table">
         <thead>
           <tr>
-            <th>ID Producto</th>
-            <th>Nombre</th>
-            <th>Precio</th>
-            <th>Descripción</th>
             <th>Imagen</th>
-            <th>Estatus</th>
             <th>Punto</th>
-            <th>Cantidad</th>
+            <th>Stock</th>
+            <th>Hacer Producto</th>
           </tr>
         </thead>
         <tbody>
             <tr *ngFor="let detalle of DetallePorProductoId | paginate: { itemsPerPage: pageSize, currentPage: currentPage }">
-            <td>{{ detalle.producto.idProducto }}</td>
-            <td>{{ detalle.producto.nombre }}</td>
-            <td>{{ detalle.producto.precio }}</td>
-            <td>{{ detalle.producto.descripccion }}</td>
             <td>
-                <img [src]="'../../../../assets/img/fotosGuardadas/' + detalle.producto.image_name" alt="Imagen" width="50"
-                    height="50">
+                <img [src]="'../../../../assets/img/fotosGuardadas/' + detalle.producto.image_name" alt="Imagen" width="100"
+                    height="100">
             </td>
-            <td>{{ detalle.producto.estatus }}</td>
             <td>{{ detalle.punto }}</td>
             <td>{{ detalle.cantidad }}</td>
+            <td>
+              <button class="btn btn-success" (click)="onRegisterCantidad(detalle.idProductoDetalle)">
+                <i class="fas fa-plus-circle"></i>
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>

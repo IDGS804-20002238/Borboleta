@@ -29,7 +29,7 @@
               </div>
               <p>{{ producto.descripccion }}</p>
               <div class="prd-bottom">
-                <a href="" class="social-info">
+                <a (click)="mostrarDetalleProducto(producto.idProducto)" class="social-info">
                   <span class="ti-bag"></span>
                   <p class="hover-text">add to bag</p>
                 </a>

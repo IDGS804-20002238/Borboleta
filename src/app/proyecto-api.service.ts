@@ -194,7 +194,7 @@ export class ProyectoApiService {
   private apiUrlRegistrarPuntoProducto = 'https://localhost:7109/tenis/RegistrarPuntosProducto';
   private apiUrlIdProductoDetalle = 'https://localhost:7109/tenis/MostrarDetalleProductoPorId';
   private apiUrlRegistrarMateriaPrimaProducto = 'https://localhost:7109/tenis/RegistrarDetalleMateriaProductoPuntos';
-
+  private apiUrlHacerProducto = 'https://localhost:7109/tenis/HacerProductos';
   getAllProductosActivos(): Observable<productos[]> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
@@ -267,6 +267,15 @@ export class ProyectoApiService {
 
     // Realizar la solicitud HTTP POST vacía, ya que no se requiere enviar datos en el cuerpo
     return this.http.post<materiaPrima[]>(this.apiUrlObtenerMateriaPrimaCompleta, {}, { headers: headers });
+  }
+
+  hacerProducto(data: any): Observable<any>{
+    console.log('esto lleva data de la api',data);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    // Realizar la solicitud HTTP POST con los datos en el cuerpo
+    return this.http.post<any>(`${this.apiUrlHacerProducto}`, data, { headers: headers });
   }
 
   

@@ -15,6 +15,14 @@ export class ProovedoresComponent implements OnInit{
   telefono: string = '';
   proveedores: Proveedor[] = [];
   proveedoresInAct: ProveedorInAct[] = [];
+  estado: string = '';
+  municipio: string = '';
+  codigoPostal: number | null = null;
+  colonia: string = '';
+  calle: string = '';
+  numeroExt: number | null = null;
+  numeroInt: number | null = null;
+  referencia: string = '';
   
   constructor(private proyectoApiService: ProyectoApiService) {}
 
@@ -55,12 +63,22 @@ export class ProovedoresComponent implements OnInit{
     }
     const data = {
       nombre: this.nombre,
-      telefono: this.telefono
+      telefono: this.telefono,
+      domicilio: {
+        estado: this.estado,
+        municipio: this.municipio,
+        codigoPostal: this.codigoPostal,
+        colonia: this.colonia,
+        calle: this.calle,
+        numeroExt: this.numeroExt,
+        numeroInt: this.numeroInt,
+        referencia: this.referencia
+      }
     };
   
     // Mostrar SweetAlert de confirmación
     Swal.fire({
-      title: '¿Quieres agregar la materia prima?',
+      title: '¿Quieres agregar el proveedor prima?',
       icon: 'question',
       showCancelButton: true,
       confirmButtonText: 'Sí',
@@ -87,8 +105,8 @@ export class ProovedoresComponent implements OnInit{
 cambiarEstatusProveedor(idProveedor: number): void {
   // Mostrar SweetAlert para confirmar la acción
   Swal.fire({
-    title: '¿Desactivar usuario?',
-    text: '¿Estás seguro que deseas desactivar este usuario?',
+    title: '¿Desactivar proveedor?',
+    text: '¿Estás seguro que deseas desactivar este proveedor?',
     icon: 'question',
     showCancelButton: true,
     confirmButtonText: 'Sí',
@@ -130,8 +148,8 @@ cambiarEstatusProveedor(idProveedor: number): void {
 activarEstatusProveedor(idProveedor: number): void {
   // Mostrar SweetAlert para confirmar la acción
   Swal.fire({
-    title: 'Activar usuario?',
-    text: '¿Estás seguro que deseas activar este usuario?',
+    title: 'Activar proveedor?',
+    text: '¿Estás seguro que deseas activar este proveedor?',
     icon: 'question',
     showCancelButton: true,
     confirmButtonText: 'Sí',

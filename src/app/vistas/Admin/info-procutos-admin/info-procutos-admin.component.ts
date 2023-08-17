@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { ProyectoApiService } from '../../../proyecto-api.service';
 import { DetallePorProductoId } from '../../../models/modelo-general.model';
 import { NgxPaginationModule } from 'ngx-pagination';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-info-procutos-admin',
@@ -53,6 +54,66 @@ export class InfoProcutosAdminComponent implements OnInit {
         }
       );
     }
+  }
+
+  onRegisterCantidad(idProductoDetalle: number): void {
+    Swal.fire({
+      title: '¿Deseas agregar más productos al stock?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Sí',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: '¿Cuántos productos agregas?',
+          html:
+            '<input id="cantidad-input" type="number" min="1" step="1" class="swal2-input">',
+          showCancelButton: true,
+          confirmButtonText: 'Siguiente',
+          cancelButtonText: 'Cancelar',
+          preConfirm: () => {
+            const cantidadInput = document.getElementById('cantidad-input') as HTMLInputElement;
+            if (cantidadInput) {
+              return cantidadInput.value;
+            }
+            return undefined; // Cambiado de null a undefined
+          }
+        }).then((inputResult) => {
+          if (inputResult.isConfirmed && inputResult.value !== undefined) {
+            const cantidad = parseInt(inputResult.value);
+            const data = {
+              productoDetalleId: idProductoDetalle,
+              cantidadACrear: cantidad
+            };
+            this.proyectoApiService.hacerProducto(data).subscribe(
+              (response) => {
+                if(response.statusCode == 200){
+                  console.log('este es el response',response)
+                Swal.fire('¡Registro exitoso!', '', 'success').then((result) => {
+                  window.location.reload();
+                });;
+                }
+                else if(response.statusCode == 409){
+                  console.log('este es el response',response)
+                  Swal.fire('¡Verifica que haya materia prima disponible!', '', 'error');
+                }else if (response.statusCode == 500){
+                  console.log('este es el response',response)
+                  Swal.fire('¡Error en el servidor!', '', 'error');
+                }else{
+                  console.log('este es el response',response)
+                  Swal.fire('¡Error en el servidor!', '', 'error');
+                }
+              },
+              (error) => {
+                console.error('Error al obtener el detalle del producto', error);
+              }
+
+            );
+          }
+        });
+      }
+    });
   }
   
 

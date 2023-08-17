@@ -15,6 +15,7 @@ import { ProductosClienteComponent } from './vistas/Cliente/productos-cliente/pr
 import { InfoProcutosAdminComponent } from './vistas/Admin/info-procutos-admin/info-procutos-admin.component';
 import { PerfilAdminComponent } from './vistas/Admin/perfil-admin/perfil-admin.component';
 import { PerfilClienteComponent } from './vistas/Cliente/perfil-cliente/perfil-cliente.component'
+import { ProductoDetalleClienteComponent } from './vistas/Cliente/producto-detalle-cliente/producto-detalle-cliente.component'
 
 
 
@@ -70,6 +71,11 @@ const routes: Routes = [
     path: 'perfilCliente',
     canActivate: [AuthGuardService],
     component: PerfilClienteComponent 
+  },
+  { 
+    path: 'productoDetalleCliente',
+    canActivate: [AuthGuardService],
+    component: ProductoDetalleClienteComponent 
   },
   
   // Redirige cualquier ruta desconocida a la página de error 404

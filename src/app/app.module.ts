@@ -31,6 +31,7 @@ import { MateriaPrimaComprasComponent } from './vistas/Admin/materia-prima-compr
 import { InfoProcutosAdminComponent } from './vistas/Admin/info-procutos-admin/info-procutos-admin.component';
 import { PerfilAdminComponent } from './vistas/Admin/perfil-admin/perfil-admin.component';
 import { PerfilClienteComponent } from './vistas/Cliente/perfil-cliente/perfil-cliente.component';
+import { ProductoDetalleClienteComponent } from './vistas/Cliente/producto-detalle-cliente/producto-detalle-cliente.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { PerfilClienteComponent } from './vistas/Cliente/perfil-cliente/perfil-c
     InfoProcutosAdminComponent,
     PerfilAdminComponent,
     PerfilClienteComponent,
+    ProductoDetalleClienteComponent,
   ],
   imports: [
     ReactiveFormsModule,
