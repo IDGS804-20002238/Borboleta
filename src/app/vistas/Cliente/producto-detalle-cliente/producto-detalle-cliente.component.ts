@@ -34,9 +34,6 @@ export class ProductoDetalleClienteComponent implements OnInit {
       console.log(this.DetallePorProductoId);
     }
     this.obtenerPuntos();
-    
-    console.log('puntosArray',this.puntosArray);
-
   }
 
   obtenerPuntos(): void {
@@ -49,29 +46,30 @@ export class ProductoDetalleClienteComponent implements OnInit {
     
   }
   
-  selectPunto(idProductoDetalle: number, cantidad : number): void {
+  selectPunto(idProductoDetalle: number, cantidad: number, punto: number): void {
     this.cantidadGlobal = cantidad;
     this.idProductoDetalleGlobal = idProductoDetalle;
-    console.log('Selected Punto by Button:', this.idProductoDetalleGlobal,this.cantidadGlobal);
-    // Aquí puedes realizar cualquier acción adicional que necesites
+    this.selectedPunto = punto; // Almacena el valor del punto seleccionado
   }
 
-  registrarDetalle():void{
-    
+  registrarDetalle(): void {
     if (this.cantidadAcomprar && this.DetallePorProductoId && this.DetallePorProductoId[0].producto.precio) {
       this.costototalxproductoGlobal = this.cantidadAcomprar * this.DetallePorProductoId[0].producto.precio;
-      console.log('Costo total por producto:', this.costototalxproductoGlobal );
+      console.log('Costo total por producto:', this.costototalxproductoGlobal);
     } else {
       console.log('No se pudo calcular el costo total del producto debido a datos faltantes.');
     }
-
+  
     const data = {
       idDetalleProducto: this.idProductoDetalleGlobal,
-      cantidad: this.cantidadGlobal,
-      costo: this.costototalxproductoGlobal ,
-    }
+      cantidad: this.cantidadAcomprar,
+      costo: this.DetallePorProductoId[0].producto.precio,
+      stock: this.cantidadGlobal,
+      nombre: this.DetallePorProductoId[0].producto.nombre,
+      punto: this.selectedPunto // Agrega el valor del punto seleccionado aquí
+    };  
     Swal.fire({
-      title: '¿Quieres agregar la materia prima?',
+      title: '¿Quieres agregar al carrito?',
       icon: 'question',
       showCancelButton: true,
       confirmButtonText: 'Sí',
@@ -79,10 +77,20 @@ export class ProductoDetalleClienteComponent implements OnInit {
     }).then((result: any) => {
       if (result.isConfirmed) {
         this.detalles.push(data);
-        // localStorage.removeItem('detalleProductoParaCompras');
+        this.cantidadAcomprar = 0;
+        this.cantidadGlobal = 0;
+        if (localStorage.getItem('detalleProductoParaCompras')) {
+          // Si ya existe el detalleProductoParaCompras en el LocalStorage, haces push
+          this.detalles = JSON.parse(localStorage.getItem('detalleProductoParaCompras') || '[]');
+          this.detalles.push(data);
+        } else {
+          // Si no existe, creas un nuevo arreglo con el primer elemento
+          this.detalles = [data];
+        }
+      
         localStorage.setItem('detalleProductoParaCompras', JSON.stringify(this.detalles));
-      }
+            }
     });
-
   }
+  
 }

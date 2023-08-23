@@ -16,6 +16,10 @@ import { InfoProcutosAdminComponent } from './vistas/Admin/info-procutos-admin/i
 import { PerfilAdminComponent } from './vistas/Admin/perfil-admin/perfil-admin.component';
 import { PerfilClienteComponent } from './vistas/Cliente/perfil-cliente/perfil-cliente.component'
 import { ProductoDetalleClienteComponent } from './vistas/Cliente/producto-detalle-cliente/producto-detalle-cliente.component'
+import { MateriaPrimaHistoricoComponent } from './vistas/Admin/materia-prima-historico/materia-prima-historico.component'
+import { InfoProveedoresComponent } from './vistas/Admin/info-proveedores/info-proveedores.component';
+import { DescripcionProveedoresComponent } from './vistas/Admin/descripcion-proveedores/descripcion-proveedores.component';
+import { CarritoClienteComponent } from './vistas/Cliente/carrito-cliente/carrito-cliente.component';
 
 
 
@@ -77,6 +81,28 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
     component: ProductoDetalleClienteComponent 
   },
+  { 
+    path: 'materiaPrimaHistorico',
+    canActivate: [AuthGuardService],
+    component: MateriaPrimaHistoricoComponent 
+  },
+  { 
+    path: 'infoProveedores',
+    canActivate: [AuthGuardService],
+    component: InfoProveedoresComponent 
+  },
+  { 
+    path: 'descripcionProveedores',
+    canActivate: [AuthGuardService],
+    component: DescripcionProveedoresComponent 
+  },
+  { 
+    path: 'carrito',
+    canActivate: [AuthGuardService],
+    component: CarritoClienteComponent 
+  },
+  
+  
   
   // Redirige cualquier ruta desconocida a la página de error 404
   { path: '**', redirectTo: 'error' }

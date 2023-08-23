@@ -27,10 +27,19 @@
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item" *ngIf="idRole === 1">
-            <a class="nav-link" routerLink="/proovedores">
-              <i class="fas fa-fw fa-truck"></i>
-              <span>Proveedores</span>
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProveedores"
+                aria-expanded="true" aria-controls="collapseProveedores">
+                <i class="fas fa-fw fa-truck"></i>
+                <span>Proveedores</span>
             </a>
+            <div id="collapseProveedores" class="collapse" aria-labelledby="headingProveedores"
+                data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Paginas Proveedores:</h6>
+                    <a class="collapse-item" routerLink="/proovedores">Registrar Proveedores</a>
+                    <a class="collapse-item" routerLink="/infoProveedores">Ver los Proveedores</a>
+                </div>
+            </div>
         </li>
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
@@ -44,7 +53,8 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Paginas Materia Prima:</h6>
                     <a class="collapse-item" routerLink="/materiaPrima">Agregar Materia Prima</a>
-                    <a class="collapse-item" routerLink="/materiaPrimaCompras">Historico de Compras</a>
+                    <a class="collapse-item" routerLink="/materiaPrimaCompras">Comprar Materia Prima</a>
+                    <a class="collapse-item" *ngIf="idRole === 1" routerLink="/materiaPrimaHistorico">Historico de Compras <br>Materia Prima</a>
                 </div>
             </div>
         </li>

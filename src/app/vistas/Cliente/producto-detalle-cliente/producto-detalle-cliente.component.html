@@ -31,46 +31,36 @@
                     <h2>${{DetallePorProductoId[0].producto.precio}}</h2>
                     <ul class="list d-flex align-items-center">
                         <li class="d-flex align-items-center">
-                          <div>
-                            <span>Puntos : </span>
-                          </div>
-                          <div class="form-group col-md-4">
-                            <!-- <label for="selectPunto">Seleccionar Punto:</label>
-                            <select class="form-control selectpicker" id="selectPunto"
-                                    [(ngModel)]="selectedPunto">
-                              <option *ngFor="let punto of puntosArray"
-                                      [value]="punto.idProductoDetalle" 
-                                      [selected]="punto.idProductoDetalle === puntosArray[0].idProductoDetalle">
-                                {{ punto.punto }}
-                              </option>
-                            </select> -->                            
-                            <div class="form-group">
-                                <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-secondary" *ngFor="let punto of puntosArray"
-                                            (click)="selectPunto(punto.idProductoDetalle, punto.cantidad)">
-                                        {{ punto.punto }}
-                                    </button>
+                            <div>
+                                <span>Puntos : </span>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <div class="form-group">
+                                    <div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-secondary"
+                                            *ngFor="let punto of puntosArray"
+                                            (click)="selectPunto(punto.idProductoDetalle, punto.cantidad, punto.punto)">
+                                            {{ punto.punto }}
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         </li>
-                      </ul>
-                      <div class="form-group col-md-4">
-                        <label for="inputCantidad">Stock : </label>
-                        <input type="number" class="form-control" id="inputCantidad"
-                               [(ngModel)]="cantidadGlobal" name="cantidadGlob"
-                               readonly>
-                      </div>
-                      <!-- <button class="btn btn-primary" (click)="getCantidadMax()"></button> -->
-                      <div class="form-group col-md-4">
+                    </ul>
+                    <div class="form-group col-md-4">
+                        <label for="inputCantidad">Stock:</label>
+                        <input type="number" class="form-control" id="inputCantidad" [(ngModel)]="cantidadGlobal"
+                            name="cantidadGlob" readonly>
+                    </div>
+                    <div class="form-group col-md-4">
                         <label for="inputCantidad">Cantidad a comprar:</label>
-                        <input type="number" class="form-control" id="inputCantidad" [(ngModel)]="cantidadAcomprar" name="cantidadAcomprar"
-                               [(ngModel)]="selectedCantidad"
-                               [max]="cantidadGlobal"
-                               [min]=0>
-                      </div>
-                      
-                      
+                        <input type="number" class="form-control" id="inputCantidad" [(ngModel)]="cantidadAcomprar"
+                            name="cantidadAcomprar" [(ngModel)]="selectedCantidad" [max]="cantidadGlobal" [min]="1"
+                            [disabled]="cantidadGlobal === 0">
+                    </div>
+
+
+
 
 
                     <p>{{DetallePorProductoId[0].producto.descripccion}}</p>

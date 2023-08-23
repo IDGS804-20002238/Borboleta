@@ -32,6 +32,10 @@ import { InfoProcutosAdminComponent } from './vistas/Admin/info-procutos-admin/i
 import { PerfilAdminComponent } from './vistas/Admin/perfil-admin/perfil-admin.component';
 import { PerfilClienteComponent } from './vistas/Cliente/perfil-cliente/perfil-cliente.component';
 import { ProductoDetalleClienteComponent } from './vistas/Cliente/producto-detalle-cliente/producto-detalle-cliente.component';
+import { MateriaPrimaHistoricoComponent } from './vistas/Admin/materia-prima-historico/materia-prima-historico.component';
+import { InfoProveedoresComponent } from './vistas/Admin/info-proveedores/info-proveedores.component';
+import { DescripcionProveedoresComponent } from './vistas/Admin/descripcion-proveedores/descripcion-proveedores.component';
+import { CarritoClienteComponent } from './vistas/Cliente/carrito-cliente/carrito-cliente.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +58,10 @@ import { ProductoDetalleClienteComponent } from './vistas/Cliente/producto-detal
     PerfilAdminComponent,
     PerfilClienteComponent,
     ProductoDetalleClienteComponent,
+    MateriaPrimaHistoricoComponent,
+    InfoProveedoresComponent,
+    DescripcionProveedoresComponent,
+    CarritoClienteComponent,
   ],
   imports: [
     ReactiveFormsModule,
